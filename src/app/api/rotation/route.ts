@@ -30,6 +30,6 @@ export async function GET() {
     const data = await res.json();
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json({ error: "abc" }, { status: 500 });
+    return NextResponse.json({ error: "error" }, { status: 500 });
   }
 }
