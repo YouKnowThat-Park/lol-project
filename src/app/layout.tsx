@@ -1,17 +1,22 @@
+"use client";
 import "./globals.css";
 import PlayLogo from "../app/assets/playImg.png";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import useDarkMode from "../components/useDarkMode";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { theme, toggleTheme } = useDarkMode();
+
   return (
-    <html lang="en">
-      <header>
-        <div className="flex justify-center h-20 bg-black space-x-20 items-center">
+    <html lang="en" className={theme}>
+      <body className={theme}>
+        <div className="flex justify-center h-20 bg-black space-x-20 items-center mb-10">
           <div>
             <Link href="/">
               <Image
@@ -60,11 +65,16 @@ export default function RootLayout({
                 height={40}
               />
             </a>
+            <button
+              className=" dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded m-0"
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? "☀️" : "🌑"}
+            </button>
           </nav>
         </div>
         {children}
-      </header>
-      <body></body>
+      </body>
     </html>
   );
 }
