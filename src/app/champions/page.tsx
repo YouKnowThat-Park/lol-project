@@ -2,6 +2,7 @@
 
 import ChampionDataFetch from "@/utils/serverApi";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Champions() {
@@ -30,13 +31,15 @@ export default function Champions() {
               key={champion.id}
               className="flex-col items-center gap-4 border p-4 rounded-md shadow-md bg-white"
             >
-              <Image
-                src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.image.full}`}
-                alt={champion.name}
-                width="120"
-                height="120"
-              />
-              <p>{champion.name}</p>
+              <Link href={`/champions/${champion.id}`}>
+                <Image
+                  src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.image.full}`}
+                  alt={champion.name}
+                  width="120"
+                  height="120"
+                />
+                <p>{champion.name}</p>
+              </Link>
             </li>
           );
         })}
