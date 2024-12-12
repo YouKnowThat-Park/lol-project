@@ -2,10 +2,9 @@ import { error } from "console";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  // 튜터님이 알료주신 주신 api url을 불러옴
   const RIOT_API_URL =
     "https://kr.api.riotgames.com/lol/platform/v3/champion-rotations";
-  // env.local에 있는 api를 process.env.RIOT_API_KEY 해서 불러옴
+  // env.local에 있는 api를 process.env해서 RIOT_API_KEY 불러옴
   const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
   // 라이엇 키가 false면 NextResponse을 json 형식으로 바꿔서 아래 {}를 리턴하게함
