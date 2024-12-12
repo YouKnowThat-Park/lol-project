@@ -10,15 +10,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <header>
         <div className="flex justify-center h-20 bg-black space-x-20 items-center">
           <div>
-            <Image
-              src="/assets/logoImg.png"
-              alt="logoImg"
-              width={120}
-              height={0}
-            />
+            <Link href="/">
+              <Image
+                src="/assets/logoImg.png"
+                alt="logoImg"
+                width={120}
+                height={0}
+              />
+            </Link>
           </div>
           <nav
             className="flex justify-center space-x-20 items-center"
@@ -35,7 +37,14 @@ export default function RootLayout({
             <div className="space-y-1.5">
               <p>로테이션</p>
               <div className="w-16 h-px bg-white" />
-              <p className="ml-1.5">챔피언</p>
+              <Link href="/champions" className="ml-1.5">
+                챔피언
+              </Link>
+            </div>
+            <div className="space-y-1.5">
+              <Link href="/items" className="ml-1.5">
+                아이템
+              </Link>
             </div>
           </nav>
 
@@ -54,7 +63,8 @@ export default function RootLayout({
           </nav>
         </div>
         {children}
-      </body>
+      </header>
+      <body></body>
     </html>
   );
 }
