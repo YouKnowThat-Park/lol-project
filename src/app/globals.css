@@ -25,3 +25,14 @@ body {
     text-wrap: balance;
   }
 }
+
+body {
+  background-color: white;
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #333333;
+  color: black;
+}
