@@ -1,4 +1,7 @@
-export default async function ChampionDataFetch() {
+import { version } from "os";
+
+// 최신 버전 확인인
+async function fetchLatestVersion() {
   const res = await fetch(
     "https://ddragon.leagueoflegends.com/api/versions.json"
   );
@@ -6,9 +9,12 @@ export default async function ChampionDataFetch() {
     throw new Error("버전 데이터를 가져오지 못했습니다.");
   }
   const versions = await res.json();
-  const latestVersion = versions[0];
-  console.log("최신버전:", latestVersion);
+  return versions[0];
+}
 
+//챔피언 정보 가져오기기
+export default async function ChampionDataFetch() {
+  const latestVersion = await fetchLatestVersion();
   const championVersions = await fetch(
     `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/champion.json`
   );
@@ -21,6 +27,24 @@ export default async function ChampionDataFetch() {
 
   return {
     data: championData.data,
+    version: latestVersion,
+  };
+}
+
+// 아이템 정보보 가져오기기
+export async function ItemsDataFetch() {
+  const latestVersion = await fetchLatestVersion();
+
+  const itemRes = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`
+  );
+  if (!itemRes) {
+    throw new Error("아이템 정보를 찾지 못했습니다.");
+  }
+  const itemsData = await itemRes.json();
+
+  return {
+    data: itemsData.data,
     version: latestVersion,
   };
 }
