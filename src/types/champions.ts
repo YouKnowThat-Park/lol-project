@@ -1,7 +1,7 @@
 // 챔피언 데이터 & 이미지
 interface ChampionData {
   id: string;
-  key: number;
+  key: string;
   title: string;
   name: string;
   blurb: string;
