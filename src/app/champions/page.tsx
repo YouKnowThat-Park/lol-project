@@ -1,6 +1,7 @@
 "use client";
 
 import ChampionDataFetch from "@/utils/serverApi";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Champions() {
@@ -22,14 +23,15 @@ export default function Champions() {
 
   return (
     <div>
-      <ul>
+      <ul className="grid grid-cols-10 gap-4">
         {Object.values(data).map((champion: ChampionData) => {
-          const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.image.full}`;
-          console.log("Image URL:", imageUrl); // URL 디버깅
           return (
-            <li key={champion.id} className="flex justify-center">
-              <img
-                src={imageUrl}
+            <li
+              key={champion.id}
+              className="flex-col items-center gap-4 border p-4 rounded-md shadow-md bg-white"
+            >
+              <Image
+                src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.image.full}`}
                 alt={champion.name}
                 width="120"
                 height="120"
