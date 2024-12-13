@@ -1,4 +1,4 @@
-interface RotationsData {
+interface ChampionRotationsData {
   freeChampionIds: number[];
   freeChampionIdsForNewPlayers: number[];
   maxNewPlayerLevel: number;
