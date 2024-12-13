@@ -33,6 +33,6 @@ body {
 }
 
 body.dark {
-  background-color: #333333;
-  color: black;
+  background-color: #111;
+  color: white;
 }
