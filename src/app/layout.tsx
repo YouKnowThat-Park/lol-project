@@ -40,7 +40,7 @@ export default function RootLayout({
               <p>공지사항</p>
             </div>
             <div className="space-y-1.5">
-              <p>로테이션</p>
+              <Link href="/rotation">로테이션</Link>
               <div className="w-16 h-px bg-white" />
               <Link href="/champions" className="ml-1.5">
                 챔피언
