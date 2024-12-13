@@ -1,5 +1,5 @@
 // 챔피언 데이터 & 이미지
-export interface ChampionData {
+interface ChampionData {
   id: string;
   key: string;
   title: string;
