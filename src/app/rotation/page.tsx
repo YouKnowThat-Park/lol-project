@@ -58,7 +58,7 @@ export default function RotationPage() {
         if (!champ) return null;
 
         return (
-          <li key={id}>
+          <li key={id} className="grid grid-cols-10 gap-4">
             <Image
               src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}
               alt={champ.name}

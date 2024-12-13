@@ -14,7 +14,6 @@ export default function Champions() {
     async function fetchData() {
       const championData = await ChampionDataFetch();
       setData(championData.data);
-      console.log(championData);
       setLatestVersion(championData.version);
     }
     fetchData();
@@ -29,7 +28,7 @@ export default function Champions() {
           return (
             <li
               key={champion.id}
-              className="flex-col items-center gap-4 border p-4 rounded-md shadow-md bg-white"
+              className="flex-col items-center gap-4 border p-4 rounded-md shadow-md"
             >
               <Link href={`/champions/${champion.id}`}>
                 <Image

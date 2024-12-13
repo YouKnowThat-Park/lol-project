@@ -19,17 +19,21 @@ export default async function ChampionPage({ params }: ChampionPageProps) {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">{champion.name}</h1>
-      <h2 className="text-lg text-gray-600">{champion.title}</h2>
-      <div className="flex gap-4 mt-4">
-        <img
-          src={`https://ddragon.leagueoflegends.com/cdn/13.19.1/img/champion/${champion.image.full}`}
-          alt={champion.name}
-          width={200}
-          height={200}
-        />
-        <p>{champion.blurb}</p>
+    <div className="flex justify-center">
+      <div className="p-4 bg-black h-[500px] w-[700px] mt-11">
+        <div className="h-[100px] w-[100px] bg-white">
+          <h1 className="text-2xl text-black font-bold">{champion.name}</h1>
+          <h2 className="text-lg text-gray-600">{champion.title}</h2>
+        </div>
+        <div className="flex gap-4 mt-4 ">
+          <img
+            src={`https://ddragon.leagueoflegends.com/cdn/13.19.1/img/champion/${champion.image.full}`}
+            alt={champion.name}
+            width={200}
+            height={200}
+          />
+          <p className="text-white">{champion.blurb}</p>
+        </div>
       </div>
     </div>
   );
