@@ -23,7 +23,7 @@ export default async function ChampionDataFetch() {
     throw new Error("챔피언 정보를 가져오지 못했습니다.");
   }
   const championData = await championVersions.json();
-  console.log("챔피언 데이터:", championData);
+  // console.log("챔피언 데이터:", championData);
 
   return {
     data: championData.data,
