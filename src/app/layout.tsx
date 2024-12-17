@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import useDarkMode from "../components/useDarkMode";
+import RotationProvider from "./_provider";
 
 export default function RootLayout({
   children,
@@ -73,7 +74,7 @@ export default function RootLayout({
             </button>
           </nav>
         </div>
-        {children}
+        <RotationProvider>{children}</RotationProvider>
       </body>
     </html>
   );
