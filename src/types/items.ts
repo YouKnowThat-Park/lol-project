@@ -18,4 +18,5 @@ interface ChampItem {
     total: number;
     sell: number;
   };
+  into?: string[];
 }
