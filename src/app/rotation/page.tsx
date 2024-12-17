@@ -1,73 +1,72 @@
 "use client";
 
 import ChampionDataFetch from "@/utils/serverApi";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+
+async function fetchRotationData() {
+  const res = await fetch("/api/rotation");
+  if (!res.ok) {
+    throw new Error(
+      "⚠️오류! 오류! : 로테이션 데이터를 가져오는데 실패했습니다.⚠️"
+    );
+  }
+  return res.json();
+}
 
 export default function RotationPage() {
-  const [rotationData, setRotationData] =
-    useState<ChampionRotationsData | null>(null);
-  const [loading, setLoading] = useState<boolean>();
-  const [error, setError] = useState<string | null>();
-  const [championData, setChampionData] = useState<ChampionData | null>(null);
+  const {
+    data: rotationData,
+    isPending: isRotationPending,
+    isError: isRotationError,
+  } = useQuery<ChampionRotationsData>({
+    queryKey: ["championRotationData"],
+    queryFn: fetchRotationData,
+  });
 
-  useEffect(() => {
-    async function fetchRotation() {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const rotationRes = await fetch("/api/rotation");
-        if (!rotationRes.ok) {
-          throw new Error(
-            "⚠️오류! 오류! : 로테이션 데이터를 가져오는데 실패 했습니다.⚠️"
-          );
-        }
-        const rotation: ChampionRotationsData = await rotationRes.json();
-        setRotationData(rotation);
-
-        const { data: champions } = await ChampionDataFetch();
-        setChampionData(champions);
-      } catch (err) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchRotation();
-  }, []);
-
-  if (loading) {
-    return <p>^-^)b 　　　Loading... </p>;
+  const {
+    data: championData,
+    isPending: isChampionPending,
+    isError: isChampionError,
+  } = useQuery<{ data: ChampionData }>({
+    queryKey: ["championData"],
+    queryFn: ChampionDataFetch,
+  });
+  console.log(championData);
+  if (isRotationPending || isChampionPending) {
+    return <p>^-^)b Loading...</p>;
   }
 
-  if (error) {
-    return <p>^-^)q 　　　Error... </p>;
-  }
-
-  if (!rotationData || !championData) {
+  if (isRotationError || isChampionError) {
     return <p>데이터를 찾을 수 없습니다. 다시 시도 해주세요.</p>;
   }
 
   return (
-    <ul>
-      {rotationData.freeChampionIdsForNewPlayers.map((id) => {
-        const champ = Object.values(championData).find(
+    <ul className="grid grid-cols-5 gap-6 mt-1">
+      {rotationData.freeChampionIdsForNewPlayers.map((id: number) => {
+        const champ = Object.values(championData.data).find(
           (champion) => parseInt(champion.key) === id
         );
         if (!champ) return null;
 
         return (
-          <li key={id} className="grid grid-cols-10 gap-4">
-            <Image
-              src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}
-              alt={champ.name}
-              width={100}
-              height={100}
-            />
-            <p>{champ.name}</p>
-            <p>{champ.title}</p>
-          </li>
+          <div className="flex justify-center py-8 max-h-screen">
+            <div className="p-6 bg-gray-800 text-white rounded-lg shadow-xl w-full max-w-4xl h-auto flex items-center gap-6">
+              <li key={id} className="flex items-center gap-4">
+                <Image
+                  className="rounded-lg border border-gray-700 shadow-md"
+                  src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}
+                  alt={champ.name}
+                  width={100}
+                  height={100}
+                />
+                <div>
+                  <p className="text-lg font-bold">{champ.name}</p>
+                  <p className="text-sm text-gray-400">{champ.title}</p>
+                </div>
+              </li>
+            </div>
+          </div>
         );
       })}
     </ul>
