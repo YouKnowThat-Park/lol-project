@@ -67,5 +67,3 @@ export async function ItemsDataFetch() {
     version: latestVersion,
   };
 }
-
-//아이템 디테일 정보 가져오기
