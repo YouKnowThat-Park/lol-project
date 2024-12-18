@@ -6,6 +6,7 @@ interface ItemDataProps {
   version: string;
 }
 
+// 문자열에서 한글과 공백만 남기고, HTML 태그나 특수문자는 공백으로 바꿈
 const Data_Main = ({ item, version }: ItemDataProps) => {
   const cleanedText = (text: string): string => {
     return text.replace(/[^가-힣\s]/g, " ");

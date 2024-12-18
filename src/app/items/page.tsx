@@ -3,13 +3,14 @@ import { ItemsDataFetch } from "@/utils/serverApi";
 import Image from "next/image";
 import Link from "next/link";
 
-export const revalidate = 86400;
+export const revalidate = 86400; // 하루마다 데이터 재검증
 
 export default async function Items() {
   const itemsRes = await ItemsDataFetch();
   const items: Record<string, ChampItem> = itemsRes.data;
   const version: string = itemsRes.version;
 
+  // 문자열에서 한글과 공백만 남기고, HTML 태그나 특수문자는 공백으로 바꿈
   const cleanedText = (text: string): string => {
     return text.replace(/[^가-힣\s]/g, " ");
   };

@@ -1,10 +1,8 @@
-// src/app/champions/page.tsx
-
 import { ChampionData } from "@/types/champions";
 import ChampionDataFetch from "@/utils/serverApi";
 import ChampionData_item from "@/components/ChampionData/Data_info";
 
-export const revalidate = 86400; // 하루마다 재검증
+export const revalidate = 86400; // 하루마다 데이터 재검증
 
 export default async function Champions() {
   const championData = await ChampionDataFetch();

@@ -1,5 +1,3 @@
-// src/app/champions/[id]/page.tsx
-
 import dynamic from "next/dynamic";
 import { ChampionDetailFetch } from "@/utils/serverApi";
 

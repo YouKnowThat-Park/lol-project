@@ -15,6 +15,7 @@ const Detail_spell = ({ champion, version }: ChampionDetail_skills_Props) => {
       <ul className="flex gap-6 justify-center">
         <li className="relative ">
           <div className="relative w-[80px] h-[80px] group">
+            {/* 패시브 스킬 */}
             <Image
               src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/passive/${champion.passive.image.full}`}
               alt={champion.passive.name}

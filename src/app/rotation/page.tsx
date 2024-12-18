@@ -17,6 +17,7 @@ async function fetchRotationData() {
 }
 
 export default function RotationPage() {
+  // 챔피언 로테이션 데이터
   const {
     data: rotationData,
     isPending: isRotationPending,
@@ -26,6 +27,7 @@ export default function RotationPage() {
     queryFn: fetchRotationData,
   });
 
+  // 챔피언 데이터
   const {
     data: championData,
     isPending: isChampionPending,
