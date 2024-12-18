@@ -1,4 +1,4 @@
-import { version } from "os";
+import { ChampionDetailType } from "@/types/champions";
 
 // 최신 버전 확인인
 async function fetchLatestVersion() {

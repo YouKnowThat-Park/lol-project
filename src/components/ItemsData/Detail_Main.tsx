@@ -1,5 +1,5 @@
+import { ChampItem } from "@/types/items";
 import Image from "next/image";
-import { describe } from "node:test";
 
 interface ItemDataProps {
   item: ChampItem;
@@ -12,7 +12,7 @@ const Data_Main = ({ item, version }: ItemDataProps) => {
   };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full ">
       <ul>
         <li className="flex flex-col items-center gap-4">
           <Image

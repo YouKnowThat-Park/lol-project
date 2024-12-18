@@ -1,12 +1,12 @@
 "use client";
 
 import ChampionData_item from "@/components/ChampionData/Data_info";
+import { ChampionData } from "@/types/champions";
 import ChampionDataFetch from "@/utils/serverApi";
 import { useEffect, useState } from "react";
 
 export default function Champions() {
   const [data, setData] = useState<Record<string, ChampionData> | null>(null);
-  const [error, setError] = useState<null>();
   const [latestVersion, setLatestVersion] = useState<string>("");
 
   useEffect(() => {

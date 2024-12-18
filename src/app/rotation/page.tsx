@@ -1,5 +1,7 @@
 "use client";
 
+import { ChampionData } from "@/types/champions";
+import { ChampionRotationsData } from "@/types/rotations";
 import ChampionDataFetch from "@/utils/serverApi";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -50,9 +52,9 @@ export default function RotationPage() {
         if (!champ) return null;
 
         return (
-          <div className="flex justify-center py-8 max-h-screen">
+          <div key={id} className="flex justify-center py-8 max-h-screen">
             <div className="p-6 bg-gray-800 text-white rounded-lg shadow-xl w-full max-w-4xl h-auto flex items-center gap-6">
-              <li key={id} className="flex items-center gap-4">
+              <li className="flex items-center gap-4">
                 <Image
                   className="rounded-lg border border-gray-700 shadow-md"
                   src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}

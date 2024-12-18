@@ -5,6 +5,7 @@ const Detail_Upgrade = dynamic(
   () => import("@/components/ItemsData/Detail_Upgrade")
 );
 import { ItemsDataFetch } from "@/utils/serverApi";
+import { ChampItem } from "@/types/items";
 
 interface ItemDetailProps {
   params: {

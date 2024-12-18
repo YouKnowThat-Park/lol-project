@@ -1,3 +1,4 @@
+import { ChampItem } from "@/types/items";
 import { ItemsDataFetch } from "@/utils/serverApi";
 import Image from "next/image";
 import Link from "next/link";
