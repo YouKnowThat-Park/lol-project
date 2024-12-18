@@ -1,5 +1,3 @@
-interface ChampionRotationsData {
-  freeChampionIds: number[];
+export interface ChampionRotationsData {
   freeChampionIdsForNewPlayers: number[];
-  maxNewPlayerLevel: number;
 }

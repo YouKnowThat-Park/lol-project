@@ -1,5 +1,6 @@
 // 챔피언 데이터 & 이미지
-interface ChampionData {
+export interface ChampionData {
+  // export 추가
   id: string;
   key: string;
   title: string;
@@ -7,35 +8,26 @@ interface ChampionData {
   blurb: string;
   image: {
     full: string;
-    sprite: string;
-    group: string;
-    x: number;
-    y: number;
-    w: number;
-    h: number;
   };
 }
 
-interface ChampionSkill {
-  id: string;
+export interface ChampionSkill {
+  // export 추가
   name: string;
   description: string;
-  tooltip: string;
-  cooldown: number[];
-  cost: number[];
-  range: number[];
   image: {
     full: string;
   };
 }
-interface ChampionSkin {
-  id: string; // 스킨 ID
+
+export interface ChampionSkin {
+  // export 추가
   num: number; // 스킨 번호
   name: string; // 스킨 이름
-  chromas: boolean; // 크로마 지원 여부
 }
 
-interface ChampionDetailType {
+export interface ChampionDetailType {
+  // export 추가
   id: string;
   key: string;
   name: string;
@@ -46,13 +38,8 @@ interface ChampionDetailType {
   };
   skins: ChampionSkin[]; // 스킨 데이터
   spells: {
-    id: string;
     name: string;
     description: string;
-    tooltip: string;
-    cooldown: number[];
-    cost: number[];
-    range: number[];
     image: {
       full: string;
     };
