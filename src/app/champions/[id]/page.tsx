@@ -35,7 +35,7 @@ export default async function ChampionPage({ params }: ChampionDetailProps) {
   }
 
   // 챔피언 이름과 설명을 메타데이터로 사용
-  const { name, title, blurb } = champion;
+  const { name, blurb } = champion;
 
   return (
     <>
