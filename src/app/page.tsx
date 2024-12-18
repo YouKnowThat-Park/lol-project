@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <video autoPlay muted>
+    <video autoPlay muted loop>
       <source type="video/webm" />
       <source
         type="video/mp4"
