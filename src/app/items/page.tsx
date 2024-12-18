@@ -9,6 +9,10 @@ export default async function Items() {
   const items: Record<string, ChampItem> = itemsRes.data;
   const version: string = itemsRes.version;
 
+  const cleanedText = (text: string): string => {
+    return text.replace(/[^가-힣\s]/g, " ");
+  };
+
   return (
     <div className="p-6 min-h-screen mt-11">
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -29,10 +33,10 @@ export default async function Items() {
                 className="rounded-md border border-gray-300"
               />
               <p className="text-lg font-semibold text-center text-white mb-2">
-                {item.name}
+                {cleanedText(item.name)}
               </p>
               <p className="text-sm text-white text-center mb-2">
-                {item.plaintext}
+                {cleanedText(item.plaintext)}
               </p>
               <p className="text-sm text-white text-center">
                 구매가격: {item.gold.total} / 판매가격: {item.gold.sell}
