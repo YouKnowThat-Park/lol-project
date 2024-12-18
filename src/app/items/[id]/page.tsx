@@ -1,8 +1,10 @@
-import Data_Main from "@/components/ItemsData/Detail_Main";
-import Detail_Upgrade from "@/components/ItemsData/Detail_Upgrade";
+import dynamic from "next/dynamic";
+
+const Data_Main = dynamic(() => import("@/components/ItemsData/Detail_Main"));
+const Detail_Upgrade = dynamic(
+  () => import("@/components/ItemsData/Detail_Upgrade")
+);
 import { ItemsDataFetch } from "@/utils/serverApi";
-import Image from "next/image";
-import Link from "next/link";
 
 interface ItemDetailProps {
   params: {
@@ -16,8 +18,6 @@ export default async function ItemDetailPage({ params }: ItemDetailProps) {
   const version: string = res.version;
 
   const item = items[params.id];
-
-  const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "");
 
   if (!item) {
     return <div>아이템 정보를 찾을 수 없습니다.</div>;
