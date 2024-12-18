@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { describe } from "node:test";
 
 interface ItemDataProps {
   item: ChampItem;
@@ -6,9 +7,12 @@ interface ItemDataProps {
 }
 
 const Data_Main = ({ item, version }: ItemDataProps) => {
-  const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "");
+  const cleanedText = (text: string): string => {
+    return text.replace(/[^가-힣\s]/g, " ");
+  };
+
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform">
       <ul>
         <li className="flex flex-col items-center gap-4">
           <Image
@@ -19,7 +23,7 @@ const Data_Main = ({ item, version }: ItemDataProps) => {
             className="rounded-lg border border-gray-500 shadow-md"
           />
           <p className="text-2xl font-bold text-white text-center">
-            {item.name}
+            {cleanedText(item.name)}
           </p>
           <p className="text-lg text-gray-300 text-center">
             구매 가격:{" "}
@@ -32,10 +36,10 @@ const Data_Main = ({ item, version }: ItemDataProps) => {
             </span>
           </p>
           <p className="text-sm text-gray-400 text-center italic">
-            {item.plaintext}
+            {cleanedText(item.plaintext)}
           </p>
           <p className="text-sm text-gray-300 text-center">
-            {stripHtml(item.description)}
+            {cleanedText(item.description)}
           </p>
         </li>
       </ul>
