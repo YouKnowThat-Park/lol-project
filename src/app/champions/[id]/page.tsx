@@ -1,6 +1,20 @@
-import ChampionDetail_info from "@/components/ChampionDetail/Detail_info";
-import Detail_spell from "@/components/ChampionDetail/Detail_skills";
-import Detail_skins from "@/components/ChampionDetail/Detail_skins";
+import dynamic from "next/dynamic";
+
+const ChampionDetail_info = dynamic(
+  () => import("@/components/ChampionDetail/Detail_info")
+);
+const Detail_spell = dynamic(
+  () => import("@/components/ChampionDetail/Detail_skills"),
+  {
+    loading: () => <div>스킬 정보를 가져오고 있습니다. ^-^)b</div>,
+  }
+);
+const Detail_skins = dynamic(
+  () => import("@/components/ChampionDetail/Detail_skins"),
+  {
+    loading: () => <div>스킨 정보를 가져오고 있습니다. ^-^)b</div>,
+  }
+);
 import { ChampionDetailFetch } from "@/utils/serverApi";
 
 interface ChampionDetailProps {
