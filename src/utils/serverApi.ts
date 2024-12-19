@@ -1,7 +1,8 @@
-import { ChampionDetailType } from "@/types/champions";
+import { ChampionData, ChampionDetailType } from "@/types/champions";
+import { ChampItem } from "@/types/items";
 
 // 최신 버전 확인인
-async function fetchLatestVersion() {
+async function fetchLatestVersion(): Promise<string> {
   const res = await fetch(
     "https://ddragon.leagueoflegends.com/api/versions.json"
   );
@@ -13,7 +14,10 @@ async function fetchLatestVersion() {
 }
 
 //챔피언 정보 가져오기기
-export default async function ChampionDataFetch() {
+export default async function ChampionDataFetch(): Promise<{
+  data: Record<string, ChampionData>; // 챔피언 데이터는 ID를 키로 하는 객체
+  version: string;
+}> {
   const latestVersion = await fetchLatestVersion();
   const championVersions = await fetch(
     `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/champion.json`
@@ -22,8 +26,8 @@ export default async function ChampionDataFetch() {
   if (!championVersions) {
     throw new Error("챔피언 정보를 가져오지 못했습니다.");
   }
-  const championData = await championVersions.json();
-  // console.log("챔피언 데이터:", championData);
+  const championData: { data: Record<string, ChampionData> } =
+    await championVersions.json();
 
   return {
     data: championData.data,
@@ -51,7 +55,10 @@ export async function ChampionDetailFetch(
 }
 
 // 아이템 정보보 가져오기기
-export async function ItemsDataFetch() {
+export async function ItemsDataFetch(): Promise<{
+  data: Record<string, ChampItem>; // 아이템 데이터는 ID를 키로 하는 객체
+  version: string;
+}> {
   const latestVersion = await fetchLatestVersion();
 
   const itemRes = await fetch(
@@ -60,7 +67,7 @@ export async function ItemsDataFetch() {
   if (!itemRes) {
     throw new Error("아이템 정보를 찾지 못했습니다.");
   }
-  const itemsData = await itemRes.json();
+  const itemsData: { data: Record<string, ChampItem> } = await itemRes.json();
 
   return {
     data: itemsData.data,
