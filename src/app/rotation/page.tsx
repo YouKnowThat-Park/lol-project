@@ -6,6 +6,11 @@ import ChampionDataFetch from "@/utils/serverApi";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
+export type ChampionApiResponse = {
+  data: Record<string, ChampionData>;
+  version: string;
+};
+
 async function fetchRotationData() {
   const res = await fetch("/api/rotation");
   if (!res.ok) {
@@ -32,10 +37,11 @@ export default function RotationPage() {
     data: championData,
     isPending: isChampionPending,
     isError: isChampionError,
-  } = useQuery<{ data: ChampionData }>({
+  } = useQuery<ChampionApiResponse>({
     queryKey: ["championData"],
     queryFn: ChampionDataFetch,
   });
+
   console.log(championData);
   if (isRotationPending || isChampionPending) {
     return <p>^-^)b Loading...</p>;
