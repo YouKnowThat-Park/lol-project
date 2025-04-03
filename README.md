@@ -101,8 +101,3 @@ SSG랜더링 방식을 사용하고 있습니다.
 |----------|-------------|
 | ![다크모드](https://github.com/user-attachments/assets/69f51d3a-5fe9-421f-9579-bf1d7d852115) | ![화이트 모드](https://github.com/user-attachments/assets/dec8a350-2fb2-4b56-a327-7b73196b2e67) |
 
-
-
-
-트러블 슈팅 
-= > [https://blog.naver.com/youkn0wthat/223691661300](https://blog.naver.com/youkn0wthat/223698308341)
