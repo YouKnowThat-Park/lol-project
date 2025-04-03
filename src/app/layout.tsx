@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className={theme}>
       <body className={theme}>
         {/* ✅ 공통 바디 */}
-        <div className="h-20 bg-black font-semibold flex items-center mb-4">
+        <div className="h-20 bg-black font-semibold flex items-center ">
           {/* ✅ 데스크탑 구조 그대로 유지 */}
           <div className="hidden lg:flex justify-center items-center space-x-20 w-full px-20">
             {/* 로고 */}
