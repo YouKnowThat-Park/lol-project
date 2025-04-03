@@ -5,6 +5,7 @@ import { ChampionRotationsData } from "@/types/rotations";
 import ChampionDataFetch from "@/utils/serverApi";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 
 export type ChampionApiResponse = {
   data: Record<string, ChampionData>;
@@ -52,7 +53,7 @@ export default function RotationPage() {
   }
 
   return (
-    <ul className="grid grid-cols-5 gap-6 mt-1">
+    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 mt-4 px-2 sm:px-4">
       {rotationData.freeChampionIdsForNewPlayers.map((id: number) => {
         const champ = Object.values(championData.data).find(
           (champion) => parseInt(champion.key) === id
@@ -60,23 +61,23 @@ export default function RotationPage() {
         if (!champ) return null;
 
         return (
-          <div key={id} className="flex justify-center py-8 max-h-screen">
-            <div className="p-6 bg-gray-800 text-white rounded-lg shadow-xl w-full max-w-4xl h-auto flex items-center gap-6">
-              <li className="flex items-center gap-4">
+          <li key={id} className="flex justify-center py-4 sm:py-6">
+            <Link href={`/champions/${champ.id}`} className="text-center">
+              <div className="p-4 sm:p-6 bg-gray-800 text-white rounded-lg shadow-xl w-full h-auto flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
                 <Image
-                  className="rounded-lg border border-gray-700 shadow-md"
+                  className="rounded-lg border border-gray-700 shadow-md w-[80px] h-auto sm:w-[100px]"
                   src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}
                   alt={champ.name}
                   width={100}
                   height={100}
                 />
-                <div>
+                <div className="text-center sm:text-left">
                   <p className="text-lg font-bold">{champ.name}</p>
                   <p className="text-sm text-gray-400">{champ.title}</p>
                 </div>
-              </li>
-            </div>
-          </div>
+              </div>
+            </Link>
+          </li>
         );
       })}
     </ul>
