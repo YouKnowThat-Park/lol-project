@@ -11,11 +11,19 @@ const Detail_spell = ({ champion, version }: ChampionDetail_skills_Props) => {
   const stripHtml = (html: string) => html.replace(/<br[^>]*>/g, "");
 
   return (
-    <div>
-      <ul className="flex gap-6 justify-center">
-        <li className="relative ">
-          <div className="relative w-[80px] h-[80px] group">
-            {/* 패시브 스킬 */}
+    <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden px-1 md:overflow-visible relative z-0">
+      <ul
+        className="
+          flex gap-6 
+          min-w-max 
+          md:justify-center 
+          md:min-w-full 
+           relative z-10 overflow-visible
+        "
+      >
+        {/* 패시브 */}
+        <li className="relative shrink-0 z-10">
+          <div className="relative w-[80px] h-[80px] group z-20">
             <Image
               src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/passive/${champion.passive.image.full}`}
               alt={champion.passive.name}
@@ -23,7 +31,7 @@ const Detail_spell = ({ champion, version }: ChampionDetail_skills_Props) => {
               height={80}
               className="rounded-md border border-gray-600 object-cover"
             />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[250px] bg-white rounded-lg shadow-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+            <div className="absolute left-1/2 top-full translate-y-2 -translate-x-1/2 w-[350px] h-[250px] bg-white rounded-lg shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center z-50 max-[767px]:hidden">
               <p className="text-gray-800 text-sm text-center px-4">
                 {champion.passive.description}
               </p>
@@ -35,10 +43,10 @@ const Detail_spell = ({ champion, version }: ChampionDetail_skills_Props) => {
           </div>
         </li>
 
-        {/* Q, W, E, R 스킬 */}
+        {/* QWER */}
         {champion.spells.map((spell, index) => (
-          <li key={index} className="relative">
-            <div className="relative w-[80px] h-[80px] group ">
+          <li key={index} className="relative shrink-0 z-10">
+            <div className="relative w-[80px] h-[80px] group z-20">
               <Image
                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell.image.full}`}
                 alt={spell.name}
@@ -46,8 +54,8 @@ const Detail_spell = ({ champion, version }: ChampionDetail_skills_Props) => {
                 height={80}
                 className="rounded-md border border-gray-600 object-cover"
               />
-              <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[250px] bg-white rounded-lg shadow-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                <p className="text-gray-800 text-sm text-center px-4">
+              <div className="absolute left-1/2 top-full translate-y-2 -translate-x-1/2 w-[350px] h-[250px] bg-white rounded-lg shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center z-50 max-[767px]:hidden">
+                <p className="text-gray-800 text-sm text-center px-4 z-50">
                   {stripHtml(spell.description)}
                 </p>
               </div>

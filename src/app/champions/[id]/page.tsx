@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { ChampionDetailFetch } from "@/utils/serverApi";
+import Head from "next/head";
 
 const ChampionDetail_info = dynamic(
   () => import("@/components/ChampionDetail/Detail_info")
@@ -16,7 +17,6 @@ const Detail_skins = dynamic(
     loading: () => <div>스킨 정보를 가져오고 있습니다. ^-^)b</div>,
   }
 );
-import Head from "next/head"; // 메타데이터 설정을 위한 임포트
 
 interface ChampionDetailProps {
   params: {
@@ -32,12 +32,11 @@ export default async function ChampionPage({ params }: ChampionDetailProps) {
     return <div>챔피언 정보를 찾을 수 없습니다.</div>;
   }
 
-  // 챔피언 이름과 설명을 메타데이터로 사용
   const { name, blurb } = champion;
 
   return (
     <>
-      {/* 메타데이터 추가 */}
+      {/* SEO 메타데이터 */}
       <Head>
         <title>{name} - League of Legends</title>
         <meta name="description" content={blurb} />
@@ -49,8 +48,16 @@ export default async function ChampionPage({ params }: ChampionDetailProps) {
         />
       </Head>
 
-      <div className="flex justify-center py-8 mt-[120px]">
-        <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg w-[700px] flex-wrap object-cover">
+      {/* ✅ 반응형 콘텐츠 레이아웃 */}
+      <div className="flex justify-center py-8 mt-[120px] px-2 lg:px-4 overflow-x-hidden">
+        <div
+          className="
+            w-full max-w-[700px]
+            p-6 bg-gray-800 text-white 
+            rounded-lg shadow-lg 
+            break-words
+          "
+        >
           {/* 챔피언 정보 */}
           <ChampionDetail_info champion={champion} version={version} />
 
@@ -62,9 +69,11 @@ export default async function ChampionPage({ params }: ChampionDetailProps) {
             {/* 스킬 목록 */}
             <Detail_spell champion={champion} version={version} />
 
-            <h3 className="text-2xl font-semibold mb-4 border-b border-gray-600 pb-2 text-center"></h3>
+            <h3 className="text-2xl font-semibold mb-4 border-b border-gray-600 pb-2 text-center">
+              스킨
+            </h3>
 
-            {/*챔피언 스킨*/}
+            {/* 챔피언 스킨 */}
             <Detail_skins champion={champion} />
           </div>
         </div>

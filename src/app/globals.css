@@ -28,12 +28,12 @@ body {
 
 /* 다크모드  */
 body {
-  background-color: white;
+  background-color: #111;
 
   transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark {
-  background-color: #111;
-  color: white;
+  background-color: white;
+  color: black;
 }

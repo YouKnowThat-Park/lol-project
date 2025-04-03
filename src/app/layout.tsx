@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className={theme}>
       <body className={theme}>
         {/* ✅ 공통 바디 */}
-        <div className="h-20 bg-black font-semibold flex items-center">
+        <div className="h-20 bg-black font-semibold flex items-center mb-4">
           {/* ✅ 데스크탑 구조 그대로 유지 */}
           <div className="hidden lg:flex justify-center items-center space-x-20 w-full px-20">
             {/* 로고 */}
@@ -39,7 +39,6 @@ export default function RootLayout({
               <div>
                 <a href="https://www.op.gg/?hl=ko_KR" target="_blank">
                   <p className="ml-1.5">OP.GG</p>
-                  <p>전적 검색</p>
                 </a>
               </div>
               <div>
@@ -48,12 +47,12 @@ export default function RootLayout({
                   target="_blank"
                 >
                   <p className="ml-1.5">롤 패치</p>
-                  <p>공지사항</p>
                 </a>
               </div>
               <div className="space-y-1.5">
                 <Link href="/rotation">로테이션</Link>
-                <div className="w-16 h-px bg-white" />
+              </div>
+              <div className="space-y-1.5">
                 <Link href="/champions" className="ml-2">
                   챔피언
                 </Link>
@@ -100,15 +99,14 @@ export default function RootLayout({
             </div>
 
             {/* 드래그 메뉴 */}
-            <div className="flex-grow overflow-x-auto scrollbar-hide [&::-webkit-scrollbar]:hidden mx-2">
-              <nav className="flex items-center space-x-6 text-sm text-[#C8AA64] min-w-max">
+            <div className="overflow-x-auto scrollbar-hide [&::-webkit-scrollbar]:hidden">
+              <nav className="flex items-center space-x-6 text-sm text-[#C8AA64] w-max mx-auto px-2">
                 <a
                   href="https://www.op.gg/?hl=ko_KR"
                   target="_blank"
                   className="shrink-0"
                 >
                   <p>OP.GG</p>
-                  <p>전적 검색</p>
                 </a>
                 <a
                   href="https://www.leagueoflegends.com/ko-kr/news/tags/patch-notes/"
@@ -116,7 +114,6 @@ export default function RootLayout({
                   className="shrink-0"
                 >
                   <p>롤 패치</p>
-                  <p>공지사항</p>
                 </a>
                 <Link href="/rotation" className="shrink-0">
                   로테이션
@@ -142,7 +139,9 @@ export default function RootLayout({
           </div>
         </div>
 
-        <RotationProvider>{children}</RotationProvider>
+        <RotationProvider>
+          <div className="min-[1600px]:px-[240px]">{children}</div>
+        </RotationProvider>
       </body>
     </html>
   );
